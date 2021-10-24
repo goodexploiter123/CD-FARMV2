@@ -1,0 +1,120 @@
+rconsolename("Custom Duels | AUTOFARM V2 | by Engraveds")
+local writer = function(c)
+    rconsoleprint("@@RED@@")
+    rconsoleprint(c)
+end
+local writey = function(c)
+    rconsoleprint("@@YELLOW@@")
+    rconsoleprint(c)
+end
+local writew = function(c)
+    rconsoleprint("@@WHITE@@")
+    rconsoleprint(c)
+end
+writer(
+    [[
+    $$$$$$\              $$\                        $$\       $$$$$$$\                                
+    $$  __$$\             $$ |                       $$ |      $$  __$$\                               
+    $$ /  $$ | $$$$$$$\ $$$$$$\    $$$$$$\  $$$$$$\  $$ |      $$ |  $$ | $$$$$$\ $$\    $$\  $$$$$$$\ 
+    $$$$$$$$ |$$  _____|\_$$  _|  $$  __$$\ \____$$\ $$ |      $$ |  $$ |$$  __$$\\$$\  $$  |$$  _____|
+    $$  __$$ |\$$$$$$\    $$ |    $$ |  \__|$$$$$$$ |$$ |      $$ |  $$ |$$$$$$$$ |\$$\$$  / \$$$$$$\  
+    $$ |  $$ | \____$$\   $$ |$$\ $$ |     $$  __$$ |$$ |      $$ |  $$ |$$   ____| \$$$  /   \____$$\ 
+    $$ |  $$ |$$$$$$$  |  \$$$$  |$$ |     \$$$$$$$ |$$ |      $$$$$$$  |\$$$$$$$\   \$  /   $$$$$$$  |
+    \__|  \__|\_______/    \____/ \__|      \_______|\__|      \_______/  \_______|   \_/    \_______/ 
+    
+                                    Developed by Engraveds
+    ]]
+)
+
+writey("\n[*] Initializing.")
+task.wait(1)
+writey("\n[*] Enabling built-in anti-afk.")
+local vu = game:GetService('VirtualUser')
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+end)
+task.wait(2)
+writey("\n[*] Successfully loaded. Created by Engraveds.")
+
+
+function teleportToEnemy()
+    if game.Players[ToFarm] and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[ToFarm].Character.HumanoidRootPart.CFrame + Vector3.new(3, 1, 0)
+        return task.wait(.05)
+    elseif not game.Players[ToFarm] then
+        game.Players.LocalPlayer:Kick('Alt not found')
+    end
+end
+
+local Delay = false
+
+function teleportPlayer()
+    pcall(function()
+        if game.Players.LocalPlayer.Character then
+            if game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-37.9, -6.2, -36.7)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").Arenas['4'][R]['2'][Region], 0)
+                return task.wait(.05)
+            end
+        end
+    end)
+end
+
+function teleportPlayer2()
+    pcall(function()
+        if game.Players.LocalPlayer.Character then
+            if game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-44.2, -6.2, -27.1)
+                firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").Arenas['4'][R]['2'][Region], 0)
+                return task.wait(.05)
+            end
+        end
+    end)
+end
+
+function startMatch()
+    if game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+        firesignal(game.Players.LocalPlayer.PlayerGui.Interface["Footer"].BeginDuel.MouseButton1Click) -- if you do it using remotes ur a skid
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, game:GetService("Workspace").Arenas['4'][R]['2'][Region], 1)
+    end
+end
+
+function swingTool()
+    game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool'):Activate()
+    game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool'):Activate()
+end
+
+if UseScript == 'Main' then
+    local RunService = game:GetService('RunService')
+    RunService.RenderStepped:Connect(function()
+        if getgenv().Enabled then
+            local kid, fuck = pcall(function()
+                if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
+                    teleportToEnemy()
+                    swingTool()
+                    task.wait()
+                elseif not game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
+                    teleportPlayer()
+                    startMatch()
+                    task.wait()
+                end
+            end)
+        end
+    end)
+elseif UseScript == 'Feed' then
+    local RunService = game:GetService('RunService')
+    RunService.RenderStepped:Connect(function()
+        if getgenv().Enabled then
+            local kid, fuck = pcall(function()
+                if game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
+                    task.wait()
+                elseif not game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
+                    teleportPlayer2()
+                    task.wait()
+                end
+            end)
+        end
+    end)
+end
