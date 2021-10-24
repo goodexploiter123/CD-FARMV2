@@ -97,7 +97,7 @@ if UseScript == 'Main' then
                     task.wait()
                 elseif not game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                     teleportPlayer()
-                    keypress(0x20)keyrelease(0x20)
+                    vu:SetKeyDown(0x20)vu:SetKeyUp(0x20)
                     startMatch()
                     task.wait()
                 end
@@ -113,7 +113,7 @@ elseif UseScript == 'Feed' then
                     task.wait()
                 elseif not game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                     teleportPlayer2()
-                    keypress(0x20)keyrelease(0x20)
+                    vu:SetKeyDown(0x20)vu:SetKeyUp(0x20)
                     task.wait()
                 end
             end)
