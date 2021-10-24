@@ -99,6 +99,7 @@ if UseScript == 'Main' then
                 elseif not game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                     teleportPlayer()
                     game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                    game.Players.LocalPlayer.Character.Humanoid.Jump = false
                     startMatch()
                     task.wait()
                 end
@@ -115,6 +116,7 @@ elseif UseScript == 'Feed' then
                 elseif not game.Players.LocalPlayer.Character:FindFirstChildOfClass('Tool') then
                     teleportPlayer2()
                     game.Players.LocalPlayer.Character.Humanoid.Jump = true
+                    game.Players.LocalPlayer.Character.Humanoid.Jump = false
                     task.wait()
                 end
             end)
